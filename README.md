@@ -20,10 +20,10 @@ Let's lay the groundwork.
 import com.semantics3.api.Products;
 
 /* Set up a client to talk to the Semantics3 API using your Semantics3 API Credentials */
-		Products products = new Products(
-				"SEM3xxxxxxxxxxxxxxxxxxxxxx",
-				"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-			);
+Products products = new Products(
+	"SEM3xxxxxxxxxxxxxxxxxxxxxx",
+	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+);
 ```
 
 ### First Query aka 'Hello World':
