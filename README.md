@@ -34,7 +34,7 @@ Let's make our first query! For this query, we are going to search for all Toshi
 /* Build the query */
 products
     .productsField( "cat_id", 4992 )
-    .productsField( "brand", "Toshiba" )
+    .productsField( "brand", "Toshiba" );
 
 /* Make the query */
 JSONObject results = products.getProducts();
@@ -91,13 +91,13 @@ This query returns all Toshiba products within a certain weight range narrowed d
 /* Build the query */
 Products products = new Products( api_key, api_secret );
 products
-	.field( "cat_id", 4992 )
-	.field( "brand", "Toshiba" )
-	.field( "weight", "gte", 1000000 )
-	.field( "weight", "lt", 1500000 )
-	.siteDetails("name","newegg.com" )
-	.latestOffers("currency","USD" )
-	.latestOffers("price","gte",100 );
+	.field("cat_id", 4992)
+	.field("brand", "Toshiba")
+	.field("weight", "gte", 1000000)
+	.field("weight", "lt", 1500000)
+	.siteDetails("name","newegg.com")
+	.latestOffers("currency","USD")
+	.latestOffers("price","gte",100);
 	
 /* Let's make a modification - say we no longer want the weight attribute */
 products.remove( "products", "weight" );
@@ -119,8 +119,6 @@ products.offersField("seller", new String[] { "LFleurs","Frys","Walmart" });
 products.offersField("currency", "USD");
 products.offersField("price", "gte", 30);
 products.offersField("lastrecorded_at", "gte", 1348654600);
-
-
 
 /* Make the query */
 JSONObject results = products.getOffers()
