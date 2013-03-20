@@ -1,0 +1,51 @@
+package com.semantics3.api;
+
+import org.json.JSONObject;
+
+import com.semantics3.Util;
+
+public class Products extends Semantics3Request {
+
+	public Products(String apiKey, String apiSecret) {
+		super(apiKey, apiSecret, "products");
+		// TODO Auto-generated constructor stub
+	}
+	
+	public JSONObject getProducts() {
+		return this.get();
+	}
+	public JSONObject getOffers() {
+		return this.get("offers");
+	}
+	public JSONObject getCategories() {
+		return this.get("categories");
+	}
+	
+	public Products field(Object...fields) {
+		super.field(fields);
+		return this;
+	}
+
+	public Products productsField(Object... fields) {
+		return this.field(fields);
+	}
+	public Products offersField(Object...fields) {
+		this.add("offers", fields);
+		return this;
+	}
+	public Products categoriesField(Object...fields) {
+		this.add("categories", fields);
+		return this;
+	}
+	
+	public Products siteDetails(Object...fields) {
+		this.field(Util.appendArray(fields, "sitedetails"));
+		return this;
+	}
+	
+	public Products latestOffers(Object...fields) {
+		this.field(Util.appendArray(fields, "sitedetails","latestoffers"));
+		return this;
+	}
+	
+}

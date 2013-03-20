@@ -13,7 +13,7 @@ import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 
-public class Semantics3Request {
+public class Semantics3Request{
 	final static private String API_DOMAIN = "api.semantics3.com";
 	final static private String API_BASE   = "https://" + API_DOMAIN + "/v1/";
 	
@@ -24,6 +24,7 @@ public class Semantics3Request {
 	private OAuthConsumer consumer;
 	private HashMap<String,JSONObject> query = new HashMap<String, JSONObject>();
 	private JSONObject queryResult;
+	private StringBuffer urlBuilder;
 	
 	public Semantics3Request(String apiKey, String apiSecret, String endpoint) {
 		this.apiKey    = apiKey;
@@ -38,8 +39,12 @@ public class Semantics3Request {
 			OAuthExpectationFailedException,
 			OAuthCommunicationException,
 			IOException {
-		String req = API_BASE + endpoint +
-				"?q=" + URLEncoder.encode(params, "UTF-8");
+		String req = new StringBuffer()
+					.append(API_BASE)
+					.append(endpoint)
+					.append("?q=")
+					.append(URLEncoder.encode(params, "UTF-8"))
+					.toString();
 		URL url = new URL(req);
 		HttpURLConnection request = (HttpURLConnection) url.openConnection();
 		consumer.sign(request);
@@ -48,6 +53,7 @@ public class Semantics3Request {
 		System.out.println("Response: " + request.getResponseCode() + " "
 				+ request.getResponseMessage());
 		JSONObject json = new JSONObject(new JSONTokener(request.getInputStream()));
+		
 		return json;
 	}
 	
@@ -72,6 +78,28 @@ public class Semantics3Request {
 		return this;
 	}
 	
+	public void remove(String endpoint, String... fields) {
+		System.out.println(this.query.get(endpoint));
+		_remove(this.query.get(endpoint),0,fields);
+		System.out.println(this.query.get(endpoint));
+	}
+	
+	private void _remove(JSONObject subquery,int i, String[] fields) {
+		if (i == fields.length-1) {
+			subquery.remove(fields[i]);
+		} else {
+			JSONObject child = (JSONObject) subquery.get(fields[i]);
+			_remove(child,i+1,fields);
+			if (child.length() == 0) {
+				subquery.remove(fields[i]);
+			}
+		}
+	}
+
+	public Semantics3Request field(Object...fields) {
+		return add(this.endpoint,fields);
+	}
+	
 	protected void runQuery() throws
 		OAuthMessageSignerException,
 		OAuthExpectationFailedException,
@@ -90,8 +118,12 @@ public class Semantics3Request {
 	}
 	
 	public JSONObject get() {
+		return get(this.endpoint);
+	}
+	
+	public JSONObject get(String endpoint) {
 		try {
-			this.runQuery();
+			this.runQuery(endpoint);
 			return this.queryResult;
 		} catch (OAuthMessageSignerException e) {
 			// TODO Auto-generated catch block
@@ -107,22 +139,5 @@ public class Semantics3Request {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public static void main(String args[]) {
-		Semantics3Request sreq = new Semantics3Request(
-				"",
-				"",
-				"products");
-		
-		sreq.add("products", "cat_id", 4992 )
-			.add("products", "brand", "Toshiba" )
-			.add("products", "weight", "gte", 1000000 )
-			.add("products", "weight", "lt", 1500000 )
-			.add("products", "sitedetails", "name", "newegg.com" )
-			.add("products", "sitedetails", "latestoffers", "currency", "USD" )
-			.add("products", "sitedetails", "latestoffers", "price", "gte", 100 );
-		
-		System.out.println(sreq.get());
 	}
 }
