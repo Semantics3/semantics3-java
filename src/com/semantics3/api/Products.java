@@ -1,5 +1,11 @@
 package com.semantics3.api;
 
+import java.io.IOException;
+
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+
 import org.json.JSONObject;
 
 import com.semantics3.Util;
@@ -11,13 +17,13 @@ public class Products extends Semantics3Request {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public JSONObject getProducts() {
+	public JSONObject getProducts() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 		return this.get();
 	}
-	public JSONObject getOffers() {
+	public JSONObject getOffers() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 		return this.get("offers");
 	}
-	public JSONObject getCategories() {
+	public JSONObject getCategories() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 		return this.get("categories");
 	}
 	
