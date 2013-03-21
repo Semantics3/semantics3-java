@@ -7,6 +7,9 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import com.semantics3.errors.Semantics3Exception;
+
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
@@ -27,6 +30,19 @@ public class Semantics3Request{
 	private StringBuffer urlBuilder;
 	
 	public Semantics3Request(String apiKey, String apiSecret, String endpoint) {
+		if (apiKey == null) { 
+			throw new Semantics3Exception(
+					"API Credentials Missing",
+					"You did not supply an apiKey. Please sign up at https://semantics3.com/ to obtain your api_key."
+				);
+		}
+		if (apiSecret == null) { 
+			throw new Semantics3Exception(
+					"API Credentials Missing",
+					"You did not supply an apiSecret. Please sign up at https://semantics3.com/ to obtain your api_key."
+				);
+		}
+
 		this.apiKey    = apiKey;
 		this.apiSecret = apiSecret;
 		this.endpoint  = endpoint;
@@ -46,7 +62,9 @@ public class Semantics3Request{
 					.append(URLEncoder.encode(params, "UTF-8"))
 					.toString();
 		URL url = new URL(req);
+
 		HttpURLConnection request = (HttpURLConnection) url.openConnection();
+		request.setRequestProperty("User-Agent", "Semantics3 Java Library");
 		consumer.sign(request);
 		request.connect();
 		JSONObject json = new JSONObject(new JSONTokener(request.getInputStream()));
@@ -64,7 +82,14 @@ public class Semantics3Request{
 		for (int i=0;i<fields.length-2;i++) {
 			JSONObject tmp = sq;
 			if(sq.has((String)fields[i])){
-				sq = sq.getJSONObject((String)fields[i]);
+				try {
+					sq = sq.getJSONObject((String)fields[i]);
+				} catch(Exception e) {
+					throw new Semantics3Exception(
+							"Invalid constraint",
+							"Cannot add this constraint, '" + fields[i] +"' is already a value."
+						);
+				}
 			} else {
 				sq = new JSONObject();
 				tmp.put((String)fields[i], sq);
@@ -108,30 +133,33 @@ public class Semantics3Request{
 		OAuthCommunicationException,
 		IOException {
 		JSONObject q = this.query.get(endpoint);
+		if (q==null) {
+			throw new Semantics3Exception(
+					"No query built", 
+					"You need to first create a query using the add() method."
+				);
+				
+		}
 		this.queryResult = fetch(endpoint,q.toString());
+		if (!this.queryResult.getString("code").equals("OK")) {
+			throw new Semantics3Exception(
+					this.queryResult.getString("code"),
+					this.queryResult.getString("message")
+				);
+			
+		}
 	}
 	
-	public JSONObject get() {
+	public JSONObject get() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 		return get(this.endpoint);
 	}
 	
-	public JSONObject get(String endpoint) {
-		try {
-			this.runQuery(endpoint);
-			return this.queryResult;
-		} catch (OAuthMessageSignerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (OAuthExpectationFailedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (OAuthCommunicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public JSONObject get(String endpoint) throws 
+		OAuthMessageSignerException,
+		OAuthExpectationFailedException,
+		OAuthCommunicationException,
+		IOException {
+		this.runQuery(endpoint);
+		return this.queryResult;
 	}
 }

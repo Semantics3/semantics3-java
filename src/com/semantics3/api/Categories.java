@@ -1,5 +1,11 @@
 package com.semantics3.api;
 
+import java.io.IOException;
+
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+
 import org.json.JSONObject;
 
 public class Categories extends Semantics3Request {
@@ -13,7 +19,7 @@ public class Categories extends Semantics3Request {
 		return this;
 	}
 
-	public JSONObject getCategories() {
+	public JSONObject getCategories() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 		return this.get();
 	}
 
