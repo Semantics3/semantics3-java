@@ -48,10 +48,7 @@ public class Semantics3Request{
 		URL url = new URL(req);
 		HttpURLConnection request = (HttpURLConnection) url.openConnection();
 		consumer.sign(request);
-		System.out.println("Sending request...");
 		request.connect();
-		System.out.println("Response: " + request.getResponseCode() + " "
-				+ request.getResponseMessage());
 		JSONObject json = new JSONObject(new JSONTokener(request.getInputStream()));
 		
 		return json;
@@ -74,14 +71,11 @@ public class Semantics3Request{
 			}
 		}
 		sq.put((String)fields[fields.length-2], fields[fields.length-1]);
-		System.out.println(endpointQuery);
 		return this;
 	}
 	
 	public void remove(String endpoint, String... fields) {
-		System.out.println(this.query.get(endpoint));
 		_remove(this.query.get(endpoint),0,fields);
-		System.out.println(this.query.get(endpoint));
 	}
 	
 	private void _remove(JSONObject subquery,int i, String[] fields) {
