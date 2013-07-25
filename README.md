@@ -3,8 +3,9 @@ semantics3-java is a Java client for accessing the Semantics3 Products API, whic
 See https://www.semantics3.com for more information.
 
 ## Requirements
-* signpost-core-1.2.1.2.jar - OAuth2 implementation
-* commons-codec-1.7.jar - Apache Commons Codec library for Base64 implementation
+* [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
+  
+* [commons-codec-1.7.jar](http://repo1.maven.org/maven2/commons-codec/commons-codec/1.7/commons-codec-1.7.jar) - Apache Commons Codec library for Base64 implementation
 
 ## Getting Started
 
