@@ -48,7 +48,7 @@ System.out.println(results);
 
 ## Sample Queries
 
-The following queries show you how to interface with some of the core functionality of the Semantics3 Products API:
+The following queries show you how to interface with some of the core functionality of the Semantics3 Products API :
 
 ### Explore the Category Tree
 
