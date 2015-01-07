@@ -1,4 +1,4 @@
-# semantics3
+# semantics3-java
 semantics3-java is a Java client for accessing the Semantics3 Products API, which provides structured information, including pricing histories, for a large number of products.
 See https://www.semantics3.com for more information.
 
@@ -46,9 +46,9 @@ results = products.get();
 System.out.println(results);
 ```
 
-## Examples
+## Sample Queries
 
-The following examples show you how to interface with some of the core functionality of the Semantics3 Products API. For more detailed examples check out the Quickstart guide: https://www.semantics3.com/quickstart
+The following queries show you how to interface with some of the core functionality of the Semantics3 Products API:
 
 ### Explore the Category Tree
 
