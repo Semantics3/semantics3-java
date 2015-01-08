@@ -59,7 +59,7 @@ System.out.println(results);
 
 The following Requests show you how to interface with some of the core functionality of the Semantics3 Products API :
 
- ### UPC Request
+### UPC Request
 
  ```java
 /* Build the Request */
