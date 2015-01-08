@@ -43,8 +43,7 @@ Let's make our first Request! For this Request, we are going to search for all T
 ```java
 /* Build the Request */
 products
-    .productsField( "cat_id", 4992 )
-    .productsField( "brand", "Toshiba" );
+    .productsField( "search", "iphone" );
 
 /* Make the Request */
 JSONObject results = products.getProducts();
@@ -59,7 +58,7 @@ System.out.println(results);
 
 The following Requests show you how to interface with some of the core functionality of the Semantics3 Products API :
 
-### UPC Request
+### UPC Query
 
 Running a UPC/EAN/GTIN request is as simple as running a search request:
 
@@ -78,7 +77,7 @@ results = products.get();
 System.out.println(results);
 ```
 
-### URL Request
+### URL Query
 
 Get the picture? You can run URL Requests as follows:
 
@@ -101,7 +100,7 @@ products
 	System.out.println(results);
 ```
 
-### Category ID Request
+### Category ID Query
 
 To lookup details about a cat_id, run your request against the categories resource:
 
