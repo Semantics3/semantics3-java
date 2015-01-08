@@ -38,7 +38,7 @@ Products products = new Products(
 
 ### First Request aka 'Hello World':
 
-Let's make our first Request! For this Request, we are going to search for all Toshiba products that fall under the category of "Computers and Accessories", whose cat_id is 4992. 
+Let's make our first Request! We are going to run a simple search fo the word "iPhone" as follows:
 
 ```java
 /* Build the Request */
