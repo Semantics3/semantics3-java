@@ -3,7 +3,7 @@ semantics3-java is a Java client for accessing the Semantics3 Products API, whic
 See https://www.semantics3.com for more information.
 
 ## Installation
-* The JAVA version used for this library is JDK 8. 
+* The JAVA version used for this library is JDK 7. 
 
 * To build and install from the latest source:
 
@@ -13,6 +13,8 @@ See https://www.semantics3.com for more information.
 * [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
   
 * [commons-codec-1.7.jar](http://repo1.maven.org/maven2/commons-codec/commons-codec/1.7/commons-codec-1.7.jar) - Apache Commons Codec library for Base64 implementation
+
+* JDK >= 6
 
 ## Getting Started
 
@@ -34,9 +36,9 @@ Products products = new Products(
 );
 ```
 
-### First Query aka 'Hello World':
+### First Request aka 'Hello World':
 
-Let's make our first query! For this query, we are going to search for all Toshiba products that fall under the category of "Computers and Accessories", whose cat_id is 4992. 
+Let's make our first Request! For this Request, we are going to search for all Toshiba products that fall under the category of "Computers and Accessories", whose cat_id is 4992. 
 
 ```java
 /* Build the query */
@@ -53,9 +55,9 @@ results = products.get();
 System.out.println(results);
 ```
 
-## Sample Queries
+## Sample Requests
 
-The following queries show you how to interface with some of the core functionality of the Semantics3 Products API :
+The following Requests show you how to interface with some of the core functionality of the Semantics3 Products API :
 
 ### Explore the Category Tree
 
