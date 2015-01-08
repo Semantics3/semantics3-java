@@ -2,6 +2,13 @@
 semantics3-java is a Java client for accessing the Semantics3 Products API, which provides structured information, including pricing histories, for a large number of products.
 See https://www.semantics3.com for more information.
 
+## Installation
+* The JAVA version used for this library is JDK 8. 
+
+* To build and install from the latest source:
+
+```git clone git@github.com:Semantics3/semantics3-java.git```
+
 ## Requirements
 * [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
   
