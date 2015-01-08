@@ -41,23 +41,43 @@ Products products = new Products(
 Let's make our first Request! For this Request, we are going to search for all Toshiba products that fall under the category of "Computers and Accessories", whose cat_id is 4992. 
 
 ```java
-/* Build the query */
+/* Build the Request */
 products
     .productsField( "cat_id", 4992 )
     .productsField( "brand", "Toshiba" );
 
-/* Make the query */
+/* Make the Request */
 JSONObject results = products.getProducts();
 /* or */
 results = products.get();
 
-/* View the results of the query */
+/* View the results of the Request */
 System.out.println(results);
 ```
 
 ## Sample Requests
 
 The following Requests show you how to interface with some of the core functionality of the Semantics3 Products API :
+
+ ### UPC Request
+
+ ```java
+/* Build the Request */
+products
+	.field( "upc", "883974958450" )
+	.field( "field", "name","gtins" );
+
+/* Make the Request */
+JSONObject results = products.getProducts();
+/* or */
+results = products.get();
+
+/* View the results of the Request */
+System.out.println(results);
+```
+
+ 
+
 
 ### Explore the Category Tree
 
