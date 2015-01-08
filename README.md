@@ -78,16 +78,29 @@ results = products.get();
 System.out.println(results);
 ```
 
-### URL Query
+### URL Request
 
-Get the picture? You can run URL queries as follows:
+Get the picture? You can run URL Requests as follows:
 
 ```java
 products
 	.productsField( "url", "http://www.walmart.com/ip/15833173" );
-JSONObject results = products.getProducts();
-results = products.get();
-System.out.println(results);
+	JSONObject results = products.getProducts();
+	results = products.get();
+	System.out.println(results);
+```
+
+### Price Filter
+
+Filter by price using the "lt" (less than) tag:
+
+```java
+products
+	.productsField( "search", "iphone" )
+	.productsField( "price", "lt", 300 );
+	JSONObject results = products.getProducts();
+	results = products.get();
+	System.out.println(results);
 ```
 
 
