@@ -66,8 +66,8 @@ Running a UPC/EAN/GTIN request is as simple as running a search request:
  ```java
 /* Build the Request */
 products
-	.field( "upc", "883974958450" )
-	.field( "field", "name","gtins" );
+	.productsField( "upc", "883974958450" )
+	.productsField( "field", "name","gtins" );
 
 /* Make the Request */
 JSONObject results = products.getProducts();
@@ -78,7 +78,18 @@ results = products.get();
 System.out.println(results);
 ```
 
- 
+### URL Query
+
+Get the picture? You can run URL queries as follows:
+
+```java
+products
+	.productsField( "url", "http://www.walmart.com/ip/15833173" );
+JSONObject results = products.getProducts();
+results = products.get();
+System.out.println(results);
+```
+
 
 
 ### Explore the Category Tree
