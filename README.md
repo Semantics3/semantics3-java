@@ -86,7 +86,6 @@ Get the picture? You can run URL Requests as follows:
 products
 	.productsField( "url", "http://www.walmart.com/ip/15833173" );
 	JSONObject results = products.getProducts();
-	results = products.get();
 	System.out.println(results);
 ```
 
@@ -99,91 +98,24 @@ products
 	.productsField( "search", "iphone" )
 	.productsField( "price", "lt", 300 );
 	JSONObject results = products.getProducts();
-	results = products.get();
 	System.out.println(results);
 ```
 
+### Category ID Query
 
-
-### Explore the Category Tree
-
-In this example we are going to be accessing the categories endpoint. We are going to be specifically exploiring the "Computers and Accessories" category, which has a cat_id of 4992. For more details regarding our category tree and associated cat_ids check out our API docs at https://www.semantics3.com/docs
+To lookup details about a cat_id, run your request against the categories resource:
 
 ```java
 /* Build the query */
-products.categoriesField( "cat_id", 4992 );
+products
+	.categoriesField( "cat_id", 4992 );
 
 /* Execute the query */
-JSONObject results = products.getCategories();
+	JSONObject results = products.getCategories();
 
 /* View the results of the query */
-System.out.println(results);
+	System.out.println(results);
 ```
-
-### Nested Search Query
-
-You can intuitively construct all your complex queries but just repeatedly using the products_field() or add() methods.
-Here is how we translate the following JSON query:
-
-```javascript
-{
-	"cat_id" : 4992, 
-	"brand"  : "Toshiba",
-	"weight" : { "gte":1000000, "lt":1500000 },
-	"sitedetails" : {
-		"name" : "newegg.com",
-		"latestoffers" : {
-			"currency": "USD",
-			"price"   : { "gte" : 100 } 
-		}
-	}
-}
-```
-
-
-This query returns all Toshiba products within a certain weight range narrowed down to just those that retailed recently on newegg.com for >= USD 100.
-
-```java
-/* Build the query */
-Products products = new Products( api_key, api_secret );
-products
-	.field("cat_id", 4992)
-	.field("brand", "Toshiba")
-	.field("weight", "gte", 1000000)
-	.field("weight", "lt", 1500000)
-	.siteDetails("name","newegg.com")
-	.latestOffers("currency","USD")
-	.latestOffers("price","gte",100);
-	
-/* Let's make a modification - say we no longer want the weight attribute */
-products.remove( "products", "weight" );
-
-/* Make the query */
-JSONObject results = products.getProducts();
-System.out.println(results);
-```
-
-
-
-### Explore Price Histories
-For this example, we are going to look at a particular product that is sold by select merchants and has a price of >= USD 30 and seen after a specific date (specified as a UNIX timestamp).
-
-```java
-/* Build the query */
-products.offersField("sem3_id", "4znupRCkN6w2Q4Ke4s6sUC");
-products.offersField("seller", new String[] { "LFleurs","Frys","Walmart" });
-products.offersField("currency", "USD");
-products.offersField("price", "gte", 30);
-products.offersField("lastrecorded_at", "gte", 1348654600);
-
-/* Make the query */
-JSONObject results = products.getOffers()
-
-/* View the results of the query */
-System.out.println(results)
-```
-
-
 
 ## Contributing
 Use GitHub's standard fork/commit/pull-request cycle.  If you have any questions, email <support@semantics3.com>.
