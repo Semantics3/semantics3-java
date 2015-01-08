@@ -66,7 +66,7 @@ Running a UPC/EAN/GTIN request is as simple as running a search request:
 /* Build the Request */
 products
 	.productsField( "upc", "883974958450" )
-	.productsField( "field", "name","gtins" );
+	.productsField( "fields", "name","gtins" );
 
 /* Make the Request */
 JSONObject results = products.getProducts();
