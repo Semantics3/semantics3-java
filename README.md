@@ -101,7 +101,7 @@ products
 	System.out.println(results);
 ```
 
-### Category ID Query
+### Category ID Request
 
 To lookup details about a cat_id, run your request against the categories resource:
 
