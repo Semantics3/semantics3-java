@@ -61,6 +61,8 @@ The following Requests show you how to interface with some of the core functiona
 
 ### UPC Request
 
+Running a UPC/EAN/GTIN request is as simple as running a search request:
+
  ```java
 /* Build the Request */
 products
