@@ -1,11 +1,20 @@
-# semantics3
+# semantics3-java
 semantics3-java is a Java client for accessing the Semantics3 Products API, which provides structured information, including pricing histories, for a large number of products.
 See https://www.semantics3.com for more information.
+
+## Installation
+* The JAVA version used for this library is JDK 7. 
+
+* To build and install from the latest source:
+
+```git clone git@github.com:Semantics3/semantics3-java.git```
 
 ## Requirements
 * [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
   
 * [commons-codec-1.7.jar](http://repo1.maven.org/maven2/commons-codec/commons-codec/1.7/commons-codec-1.7.jar) - Apache Commons Codec library for Base64 implementation
+
+* JDK >= 6
 
 ## Getting Started
 
@@ -27,119 +36,96 @@ Products products = new Products(
 );
 ```
 
-### First Query aka 'Hello World':
+### First Request aka 'Hello World':
 
-Let's make our first query! For this query, we are going to search for all Toshiba products that fall under the category of "Computers and Accessories", whose cat_id is 4992. 
+Let's make our first Request! We are going to run a simple search fo the word "iPhone" as follows:
 
 ```java
-/* Build the query */
+/* Build the Request */
 products
-    .productsField( "cat_id", 4992 )
-    .productsField( "brand", "Toshiba" );
+    .productsField( "search", "iphone" );
 
-/* Make the query */
+/* Make the Request */
 JSONObject results = products.getProducts();
 /* or */
 results = products.get();
 
-/* View the results of the query */
+/* View the results of the Request */
 System.out.println(results);
 ```
 
-## Examples
+## Sample Requests
 
-The following examples show you how to interface with some of the core functionality of the Semantics3 Products API. For more detailed examples check out the Quickstart guide: https://www.semantics3.com/quickstart
+The following Requests show you how to interface with some of the core functionality of the Semantics3 Products API :
 
-### Explore the Category Tree
+### UPC Query
 
-In this example we are going to be accessing the categories endpoint. We are going to be specifically exploiring the "Computers and Accessories" category, which has a cat_id of 4992. For more details regarding our category tree and associated cat_ids check out our API docs at https://www.semantics3.com/docs
+Running a UPC/EAN/GTIN request is as simple as running a search request:
+
+ ```java
+/* Build the Request */
+products
+	.productsField( "upc", "883974958450" )
+	.productsField( "fields", "name","gtins" );
+
+/* Make the Request */
+JSONObject results = products.getProducts();
+/* or */
+results = products.get();
+
+/* View the results of the Request */
+System.out.println(results);
+```
+
+### URL Query
+
+Get the picture? You can run URL Requests as follows:
+
+```java
+products
+	.productsField( "url", "http://www.walmart.com/ip/15833173" );
+	JSONObject results = products.getProducts();
+	System.out.println(results);
+```
+
+### Price Filter
+
+Filter by price using the "lt" (less than) tag:
+
+```java
+products
+	.productsField( "search", "iphone" )
+	.productsField( "price", "lt", 300 );
+	JSONObject results = products.getProducts();
+	System.out.println(results);
+```
+
+### Category ID Query
+
+To lookup details about a cat_id, run your request against the categories resource:
 
 ```java
 /* Build the query */
-products.categoriesField( "cat_id", 4992 );
+products
+	.categoriesField( "cat_id", 4992 );
 
 /* Execute the query */
-JSONObject results = products.getCategories();
+	JSONObject results = products.getCategories();
 
 /* View the results of the query */
-System.out.println(results);
+	System.out.println(results);
 ```
-
-### Nested Search Query
-
-You can intuitively construct all your complex queries but just repeatedly using the products_field() or add() methods.
-Here is how we translate the following JSON query:
-
-```javascript
-{
-	"cat_id" : 4992, 
-	"brand"  : "Toshiba",
-	"weight" : { "gte":1000000, "lt":1500000 },
-	"sitedetails" : {
-		"name" : "newegg.com",
-		"latestoffers" : {
-			"currency": "USD",
-			"price"   : { "gte" : 100 } 
-		}
-	}
-}
-```
-
-
-This query returns all Toshiba products within a certain weight range narrowed down to just those that retailed recently on newegg.com for >= USD 100.
-
-```java
-/* Build the query */
-Products products = new Products( api_key, api_secret );
-products
-	.field("cat_id", 4992)
-	.field("brand", "Toshiba")
-	.field("weight", "gte", 1000000)
-	.field("weight", "lt", 1500000)
-	.siteDetails("name","newegg.com")
-	.latestOffers("currency","USD")
-	.latestOffers("price","gte",100);
-	
-/* Let's make a modification - say we no longer want the weight attribute */
-products.remove( "products", "weight" );
-
-/* Make the query */
-JSONObject results = products.getProducts();
-System.out.println(results);
-```
-
-
-
-### Explore Price Histories
-For this example, we are going to look at a particular product that is sold by select merchants and has a price of >= USD 30 and seen after a specific date (specified as a UNIX timestamp).
-
-```java
-/* Build the query */
-products.offersField("sem3_id", "4znupRCkN6w2Q4Ke4s6sUC");
-products.offersField("seller", new String[] { "LFleurs","Frys","Walmart" });
-products.offersField("currency", "USD");
-products.offersField("price", "gte", 30);
-products.offersField("lastrecorded_at", "gte", 1348654600);
-
-/* Make the query */
-JSONObject results = products.getOffers()
-
-/* View the results of the query */
-System.out.println(results)
-```
-
-
 
 ## Contributing
 Use GitHub's standard fork/commit/pull-request cycle.  If you have any questions, email <support@semantics3.com>.
 
 ## Author
 
-* Shawn Tan <shawn@semantics3.com>
+* Asmit Kumar <asmit@semantics3.com>
 
 ## Copyright
 
-Copyright (c) 2013 Semantics3 Inc.
+Copyright (c) 2015 Semantics3 Inc.
 
 ## License
 
