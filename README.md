@@ -119,7 +119,9 @@ products
 ## Contributing
 Use GitHub's standard fork/commit/pull-request cycle.  If you have any questions, email <support@semantics3.com>.
 
-## Author
+## Authors
+
+* Shawn Tan
 
 * Asmit Kumar <asmit@semantics3.com>
 
