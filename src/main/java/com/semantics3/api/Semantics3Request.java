@@ -1,20 +1,19 @@
 package com.semantics3.api;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import com.semantics3.errors.Semantics3Exception;
-
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
 
 public class Semantics3Request{
 	final static private String API_DOMAIN = "api.semantics3.com";
