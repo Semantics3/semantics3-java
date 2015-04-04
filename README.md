@@ -166,15 +166,15 @@ Once you register a webhook, you can start adding events to it. Semantics3 serve
 	
 	Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
 	
-	String json = "{\"type\": \"price.change\"," +
-			"\"product\": " +
-			"{\"sem3_id\": \"1QZC8wchX62eCYS2CACmka\"}," +
-			"\"constraints\": " +
-			"{ \"gte\": 10, \"lte\": 100}}";
-	
 	HashMap<String, Object> params = new HashMap<String, Object>();
-	params.put("params", json);
-	
+	HashMap<String, Object> product = new HashMap<String, Object>();
+	HashMap<String, Object> constraints = new HashMap<String, Object>();
+    params.put("type", "price.change");
+    product.put("sem3_id", "1QZC8wchX62eCYS2CACmka");
+    params.put("product", product);
+    constraints.put("gte", 10);
+    constraints.put("lte", 100);
+    params.put("constraints", constraints);
 	JSONObject results = request.runQuery(endpoint, "POST", params);
 	System.out.println(results.toString(4));
 ```
