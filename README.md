@@ -129,7 +129,7 @@ You can register a webhook with Semantics3 by sending a POST request to ```"webh
     String apiSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
     String endpoint = "webhooks";
     Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-    HashMap params = new HashMap();
+    HashMap<String, Object> params = new HashMap<String, Object>();
     params.put("webhook_uri", "http://mydomain.com/webhooks-callback-url");
     JSONObject results = request.runQuery(endpoint, "POST", params);
     System.out.println(results.toString(4));
@@ -139,8 +139,7 @@ To fetch existing webhooks
 ```  
     String endpoint = "webhooks";
     Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-    HashMap params = new HashMap();
-	params.put("", "");
+    HashMap<String, Object> params = new HashMap<String, Object>();
 	JSONObject results = request.runQuery(endpoint, "GET", params);
 	System.out.println(results.toString(4));
 ```
@@ -151,8 +150,7 @@ To remove a webhook
     String endpoint = "webhooks/" + webhookId;
     Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
     
-	HashMap params = new HashMap();
-	params.put("", "");
+	HashMap<String, Object> params = new HashMap<String, Object>();
 
 	JSONObject results = request.runQuery(endpoint, "DELETE", params);
 	System.out.println(results.toString(4));
@@ -174,8 +172,8 @@ Once you register a webhook, you can start adding events to it. Semantics3 serve
 			"\"constraints\": " +
 			"{ \"gte\": 10, \"lte\": 100}}";
 	
-	HashMap params = new HashMap();
-	params.put("params", "json");
+	HashMap<String, Object> params = new HashMap<String, Object>();
+	params.put("params", json);
 	
 	JSONObject results = request.runQuery(endpoint, "POST", params);
 	System.out.println(results.toString(4));
@@ -188,9 +186,7 @@ To fetch all registered events for a give webhook
     String endpoint = "webhooks/" +webhookId+ "/events";
     
 	Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-	HashMap params = new HashMap();
-	
-	params.put("", "");
+	HashMap<String, Object> params = new HashMap<String, Object>();
 	JSONObject results = request.runQuery(endpoint, "GET", params);
 ```
 ## Webhook Notifications
