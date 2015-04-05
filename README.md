@@ -9,6 +9,9 @@ See https://www.semantics3.com for more information.
 
 ```git clone git@github.com:Semantics3/semantics3-java.git```
 
+* Otherwise, each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/v1.0/Sem3Java-1.0-SNAPSHOT-jar-with-dependencies.jar) is available as fat jar.
+
+
 ## Requirements
 * [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
   
