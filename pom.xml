@@ -4,11 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Sem3Java</groupId>
+    <groupId>com.semantics3.api</groupId>
     <artifactId>Sem3Java</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name> Semantics3 Java Library</name>
+    <name>Semantics3 Java Library</name>
     <url>http://maven.apache.org</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble-all</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -27,6 +51,10 @@
             <version>1.10</version>
         </dependency>
     </dependencies>
-
+    <scm>
+        <connection>scm:git:git://github.com/Semantics3/semantics3-java.git</connection>
+        <developerConnection>scm:git:git@github.com:Semantics3/semantics3-java.git</developerConnection>
+        <url>https://github.com/Semantics3/semantics3-java</url>
+    </scm>
 
 </project>
