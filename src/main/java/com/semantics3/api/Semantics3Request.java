@@ -217,7 +217,7 @@ public class Semantics3Request{
 		}
 	}
 
-    protected JSONObject runQuery(String endpoint, String method, HashMap<String, Object> params) throws
+    public JSONObject runQuery(String endpoint, String method, HashMap<String, Object> params) throws
             OAuthMessageSignerException,
             OAuthExpectationFailedException,
             OAuthCommunicationException,
