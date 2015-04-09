@@ -49,7 +49,7 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy -Dmaven.test.skip=true</goals>
-                    <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+                    <!--<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>-->
                 </configuration>
             </plugin>
             <plugin>
