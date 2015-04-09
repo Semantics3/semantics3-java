@@ -4,7 +4,7 @@
 
     <groupId>com.semantics3</groupId>
     <artifactId>Sem3Java</artifactId>
-    <version>1.1.6-SNAPSHOT</version>
+    <version>1.1.6</version>
     <name>Semantics3 Java Library</name>
     <url>http://maven.apache.org</url>
     <build>
@@ -108,7 +108,8 @@
         <connection>scm:git:git://github.com/Semantics3/semantics3-java.git</connection>
         <developerConnection>scm:git:git@github.com:Semantics3/semantics3-java.git</developerConnection>
         <url>https://github.com/Semantics3/semantics3-java</url>
-    </scm>
+      <tag>Sem3Java-1.1.6</tag>
+  </scm>
     <distributionManagement>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
