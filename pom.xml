@@ -6,7 +6,38 @@
     <artifactId>Sem3Java</artifactId>
     <version>1.1.8-SNAPSHOT</version>
     <name>Semantics3 Java Library</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/Semantics3/semantics3-java</url>
+    <description>Java bindings for Semantics3 API</description>
+    <issueManagement>
+        <url>https://github.com/Semantics3/semantics3-java/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <email>abishek@semantics3.com</email>
+            <name>Abishek Bhat</name>
+            <url>https://github.com/abishekk92</url>
+            <id>abishekk92</id>
+        </developer>
+        <developer>
+            <email>asmit@semantics3.com</email>
+            <name>Asmit Kumar</name>
+            <url>https://github.com/asmitkumar</url>
+            <id>asmitkumar</id>
+        </developer>
+        <developer>
+            <name>Shawn Tan</name>
+            <url>https://github.com/shawntan</url>
+            <id>shawntan</id>
+        </developer>
+    </developers>
     <build>
         <plugins>
             <plugin>
