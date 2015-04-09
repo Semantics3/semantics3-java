@@ -4,7 +4,7 @@
 
     <groupId>com.semantics3</groupId>
     <artifactId>Sem3Java</artifactId>
-    <version>1.1.8-SNAPSHOT</version>
+    <version>1.1.8</version>
     <name>Semantics3 Java Library</name>
     <url>https://github.com/Semantics3/semantics3-java</url>
     <description>Java bindings for Semantics3 API</description>
@@ -139,7 +139,7 @@
         <connection>scm:git:git://github.com/Semantics3/semantics3-java.git</connection>
         <developerConnection>scm:git:git@github.com:Semantics3/semantics3-java.git</developerConnection>
         <url>https://github.com/Semantics3/semantics3-java</url>
-      <tag>HEAD</tag>
+      <tag>Sem3Java-1.1.8</tag>
   </scm>
     <distributionManagement>
         <snapshotRepository>
