@@ -11,15 +11,14 @@ See https://www.semantics3.com for more information.
 
 * Each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.1/Sem3Java-1.2.1-jar-with-dependencies.jar) is also available as fat jar.
 
-* The Dependencies can also be installed using ```maven``` by putting this in the ```pom.xml``` file.
+* The Dependencies can also be installed using ```maven``` by adding this in the ```pom.xml``` file.
 
 ```
-	<dependency>
+        <dependency>
             <groupId>com.semantics3</groupId>
             <artifactId>Sem3Java</artifactId>
             <version>1.2.1</version>
         </dependency>
-	
 ```
 
 ## Requirements
