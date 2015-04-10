@@ -9,7 +9,7 @@ See https://www.semantics3.com for more information.
 
 ```git clone git@github.com:Semantics3/semantics3-java.git```
 
-* Otherwise, each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/v1.1.5/Sem3Java-1.1.5-SNAPSHOT-jar-with-dependencies.jar) is available as fat jar.
+* Otherwise, each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/v1.2.0/Sem3Java-1.2.0-SNAPSHOT-jar-with-dependencies.jar) is available as fat jar.
 
 
 ## Requirements
