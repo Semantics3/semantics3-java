@@ -9,8 +9,17 @@ See https://www.semantics3.com for more information.
 
 ```git clone git@github.com:Semantics3/semantics3-java.git```
 
-* Otherwise, each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.1/Sem3Java-1.2.1-jar-with-dependencies.jar) is available as fat jar.
+* Each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.1/Sem3Java-1.2.1-jar-with-dependencies.jar) is also available as fat jar.
 
+* The Dependencies can also be installed using ```maven``` by adding this in the ```pom.xml``` file.
+
+```
+        <dependency>
+            <groupId>com.semantics3</groupId>
+            <artifactId>Sem3Java</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+```
 
 ## Requirements
 * [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
