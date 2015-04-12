@@ -5,28 +5,15 @@ See https://www.semantics3.com for more information.
 ## Installation
 * The JAVA version used for this library is JDK 7. 
 
-* To build and install from the latest source:
+* Add the following to your pom.xml
 
-```git clone git@github.com:Semantics3/semantics3-java.git```
-
-* Each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.1/Sem3Java-1.2.1-jar-with-dependencies.jar) is also available as fat jar.
-
-* The Dependencies can also be installed using ```maven``` by adding this in the ```pom.xml``` file.
-
+```xml
+    <dependency>
+        <groupId>com.semantics3</groupId>
+        <artifactId>Sem3Java</artifactId>
+        <version>1.2.1</version>
+    </dependency>
 ```
-        <dependency>
-            <groupId>com.semantics3</groupId>
-            <artifactId>Sem3Java</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-```
-
-## Requirements
-* [signpost-core-1.2.1.2.jar](https://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.2.jar) - OAuth2 implementation
-  
-* [commons-codec-1.7.jar](http://repo1.maven.org/maven2/commons-codec/commons-codec/1.7/commons-codec-1.7.jar) - Apache Commons Codec library for Base64 implementation
-
-* JDK >= 6
 
 ## Getting Started
 
@@ -50,7 +37,7 @@ Products products = new Products(
 
 ### First Request aka 'Hello World':
 
-Let's make our first Request! We are going to run a simple search fo the word "iPhone" as follows:
+Let's make our first Request! We are going to run a simple search for the word "iPhone" as follows:
 
 ```java
 /* Build the Request */
@@ -229,9 +216,9 @@ Use GitHub's standard fork/commit/pull-request cycle.  If you have any questions
 
 ## Authors
 
-* Shawn Tan
-
 * Asmit Kumar <asmit@semantics3.com>
+
+* Shawn Tan
 
 ## Copyright
 
