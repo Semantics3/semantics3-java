@@ -125,76 +125,76 @@ You can use webhooks to get near-real-time price updates from Semantics3.
 
 You can register a webhook with Semantics3 by sending a POST request to ```"webhooks"``` endpoint. To verify that your URL is active, a GET request will be sent to your server with a ```verification_code``` parameter. Your server should respond with ```verification_code``` in the response body to complete the verification process.
 
-```
-    String apiKey = "SEM3xxxxxxxxxxxxxxxxxxxxxx";
-    String apiSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-    String endpoint = "webhooks";
-    Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-    HashMap<String, Object> params = new HashMap<String, Object>();
-    params.put("webhook_uri", "http://mydomain.com/webhooks-callback-url");
-    JSONObject results = request.runQuery(endpoint, "POST", params);
-    System.out.println(results.toString(4));
+```java
+String apiKey = "SEM3xxxxxxxxxxxxxxxxxxxxxx";
+String apiSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+String endpoint = "webhooks";
+Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
+HashMap<String, Object> params = new HashMap<String, Object>();
+params.put("webhook_uri", "http://mydomain.com/webhooks-callback-url");
+JSONObject results = request.runQuery(endpoint, "POST", params);
+System.out.println(results.toString(4));
 ```
 To fetch existing webhooks
 
-```  
-    String endpoint = "webhooks";
-    Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-    HashMap<String, Object> params = new HashMap<String, Object>();
-	JSONObject results = request.runQuery(endpoint, "GET", params);
-	System.out.println(results.toString(4));
+```java
+String endpoint = "webhooks";
+Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
+HashMap<String, Object> params = new HashMap<String, Object>();
+JSONObject results = request.runQuery(endpoint, "GET", params);
+System.out.println(results.toString(4));
 ```
 To remove a webhook
 
-```
-    String webhookId = "7JcGN81u";
-    String endpoint = "webhooks/" + webhookId;
-    Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-    
-	HashMap<String, Object> params = new HashMap<String, Object>();
+```java
+String webhookId = "7JcGN81u";
+String endpoint = "webhooks/" + webhookId;
+Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
 
-	JSONObject results = request.runQuery(endpoint, "DELETE", params);
-	System.out.println(results.toString(4));
+HashMap<String, Object> params = new HashMap<String, Object>();
+
+JSONObject results = request.runQuery(endpoint, "DELETE", params);
+System.out.println(results.toString(4));
 ```
 
 ### Registering events
 
 Once you register a webhook, you can start adding events to it. Semantics3 server will send you notifications when these events occur. To register events for a specific webhook send a POST request to the ```"webhooks/{webhook_id}/events"``` endpoint
 
-```
-    String webhookId = "7JcGN81u";
-    String endpoint = "webhooks/" +webhookId+ "/events";
-	
-	Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-	
-	HashMap<String, Object> params = new HashMap<String, Object>();
-	HashMap<String, Object> product = new HashMap<String, Object>();
-	HashMap<String, Object> constraints = new HashMap<String, Object>();
-    params.put("type", "price.change");
-    product.put("sem3_id", "1QZC8wchX62eCYS2CACmka");
-    params.put("product", product);
-    constraints.put("gte", 10);
-    constraints.put("lte", 100);
-    params.put("constraints", constraints);
-	JSONObject results = request.runQuery(endpoint, "POST", params);
-	System.out.println(results.toString(4));
+```java
+String webhookId = "7JcGN81u";
+String endpoint = "webhooks/" +webhookId+ "/events";
+
+Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
+
+HashMap<String, Object> params = new HashMap<String, Object>();
+HashMap<String, Object> product = new HashMap<String, Object>();
+HashMap<String, Object> constraints = new HashMap<String, Object>();
+params.put("type", "price.change");
+product.put("sem3_id", "1QZC8wchX62eCYS2CACmka");
+params.put("product", product);
+constraints.put("gte", 10);
+constraints.put("lte", 100);
+params.put("constraints", constraints);
+JSONObject results = request.runQuery(endpoint, "POST", params);
+System.out.println(results.toString(4));
 ```
 
 To fetch all registered events for a give webhook
 
-```
-    String webhookId = "7JcGN81u";
-    String endpoint = "webhooks/" +webhookId+ "/events";
-    
-	Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
-	HashMap<String, Object> params = new HashMap<String, Object>();
-	JSONObject results = request.runQuery(endpoint, "GET", params);
+```java
+String webhookId = "7JcGN81u";
+String endpoint = "webhooks/" +webhookId+ "/events";
+
+Semantics3Request request = new Semantics3Request(apiKey, apiSecret, endpoint);
+HashMap<String, Object> params = new HashMap<String, Object>();
+JSONObject results = request.runQuery(endpoint, "GET", params);
 ```
 ## Webhook Notifications
 
 Once you have created a webhook and registered events on it, notifications will be sent to your registered webhook URI via a POST request when the corresponding events occur. Make sure that your server can accept POST requests. Here is how a sample notification object looks like
 
-```
+```json
 {
     "type": "price.change",
     "event_id": "XyZgOZ5q",
