@@ -88,9 +88,19 @@ public class Semantics3Request{
 		request.setRequestProperty("User-Agent", "Semantics3 Java Library");
 		consumer.sign(request);
 		request.connect();
-		JSONObject json = new JSONObject(new JSONTokener(request.getInputStream()));
-		
-		return json;
+        try {
+            JSONObject json = new JSONObject(new JSONTokener(request.getInputStream()));
+            if (!json.has("code")){
+                json.put("code", "OK");
+            }
+            return json;
+        }
+        catch (IOException e) {
+            InputStream error = ((HttpURLConnection) request).getErrorStream();
+            JSONObject json = new JSONObject(new JSONTokener(error));
+            json.put("code", "Error");
+            return json;
+        }
 	}
 
     protected JSONObject fetch(String endpoint, String method, HashMap<String, Object> params) throws
@@ -222,7 +232,15 @@ public class Semantics3Request{
             OAuthExpectationFailedException,
             OAuthCommunicationException,
             IOException {
+        if(method == "GET"){
+            JSONObject jsonObject = new JSONObject(params);
+            this.query.put(endpoint, jsonObject);
+            this.runQuery(endpoint);
+
+        }
+        else {
         this.queryResult = fetch(endpoint, method, params);
+        }
         if (!this.queryResult.getString("code").equals("OK")) {
             throw new Semantics3Exception(
                     this.queryResult.getString("code"),

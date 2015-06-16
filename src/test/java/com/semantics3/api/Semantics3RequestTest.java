@@ -4,7 +4,6 @@ import com.semantics3.errors.Semantics3Exception;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
-import org.hamcrest.CoreMatchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
 
+import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,7 +26,7 @@ public class Semantics3RequestTest {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("webhook_uri", "http://148.251.44.168:5000");
+        params.put("webhook_uri", " http://sem3-webhooks-verification.ngrok.com");
         try {
             JSONObject result = sem3.runQuery("webhooks", "POST", params);
             assertThat(result.getString("code"), equalTo("OK"));
@@ -42,7 +42,7 @@ public class Semantics3RequestTest {
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
         JSONObject result = sem3.runQuery("webhooks", "GET", params);
-        assertThat(result.getJSONArray("data").length(), CoreMatchers.anyOf(equalTo(0), equalTo(1)));
+        assertTrue(result.getJSONArray("data").length() > 0);
 
     }
 

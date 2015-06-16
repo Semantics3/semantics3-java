@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -68,6 +69,17 @@ public class ProductsTest {
                 .categoriesField("cat_id", 4992);
         JSONObject results = products.getCategories();
         JSONArray resultsArray = (JSONArray) results.get("results");
+        assertThat(resultsArray.length() > 0, is(true));
+    }
+
+    @Test
+    public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+        Properties property = TestUtils.getConfig("api.config");
+        Semantics3Request semantics3Request = new Semantics3Request(property.get("SKU_API_KEY").toString(), property.get("SKU_API_SECRET").toString());
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("site", "abercrombie.com");
+        JSONObject jsonObject = semantics3Request.runQuery("skus", "GET", params);
+        JSONArray resultsArray = (JSONArray) jsonObject.get("results");
         assertThat(resultsArray.length() > 0, is(true));
     }
 }
