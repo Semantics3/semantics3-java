@@ -15,7 +15,7 @@ See https://www.semantics3.com for more information.
     </dependency>
 ```
 
-* For projects which don't use Maven each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.1/Sem3Java-1.2.1-jar-with-dependencies.jar) is also available as a fat jar.
+* For projects which don't use Maven each stable [release](https://github.com/Semantics3/semantics3-java/releases/download/Sem3Java-1.2.2/Sem3Java-1.2.2-jar-with-dependencies.jar) is also available as a fat jar.
 
 ## Getting Started
 
