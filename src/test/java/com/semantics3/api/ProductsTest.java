@@ -5,6 +5,7 @@ import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -75,11 +76,29 @@ public class ProductsTest {
     @Test
     public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
         Properties property = TestUtils.getConfig("api.config");
-        Semantics3Request semantics3Request = new Semantics3Request(property.get("SKU_API_KEY").toString(), property.get("SKU_API_SECRET").toString());
+        Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("site", "abercrombie.com");
         JSONObject jsonObject = semantics3Request.runQuery("skus", "GET", params);
         JSONArray resultsArray = (JSONArray) jsonObject.get("results");
         assertThat(resultsArray.length() > 0, is(true));
+    }
+
+    @Ignore
+    public void TestPagination() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+        Properties property = TestUtils.getConfig("api.config");
+        Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("site", "macys.com");
+        JSONObject jsonObject = semantics3Request.runQuery("skus", "GET", params);
+        while(jsonObject.has("next")){
+            JSONObject next = (JSONObject)jsonObject.get("next");
+            String page = next.getString("page");
+            System.out.println(page);
+            params.remove("site");
+            params.put("page", page);
+            jsonObject = semantics3Request.runQuery("skus", "GET", params);
+            System.out.println(jsonObject.toString());
+        }
     }
 }
