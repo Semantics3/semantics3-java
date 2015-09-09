@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -21,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class Semantics3RequestTest {
     @Test
-    public void testRunQueryPost() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+    public void testRunQueryPost() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -36,7 +37,7 @@ public class Semantics3RequestTest {
     }
 
     @Test
-    public void testRunQueryGet() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+    public void testRunQueryGet() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -46,7 +47,7 @@ public class Semantics3RequestTest {
     }
 
     @Test
-    public void testRunQueryDelete() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+    public void testRunQueryDelete() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -60,5 +61,6 @@ public class Semantics3RequestTest {
             assertThat(response.getString("code"), equalTo("OK"));
         }
     }
+
 
 }

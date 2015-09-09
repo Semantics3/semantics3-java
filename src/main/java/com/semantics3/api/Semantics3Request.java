@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -72,10 +73,10 @@ public class Semantics3Request{
     }
 
 	protected JSONObject fetch(String endpoint, String params) throws
-			OAuthMessageSignerException,
-			OAuthExpectationFailedException,
-			OAuthCommunicationException,
-			IOException {
+            OAuthMessageSignerException,
+            OAuthExpectationFailedException,
+            OAuthCommunicationException,
+            IOException, URISyntaxException {
 		String req = new StringBuffer()
 					.append(API_BASE)
 					.append(endpoint)
@@ -83,7 +84,7 @@ public class Semantics3Request{
 					.append(URLEncoder.encode(params, "UTF-8"))
 					.toString();
 		URL url = new URL(req);
-
+        url = url.toURI().normalize().toURL();
 		HttpURLConnection request = (HttpURLConnection) url.openConnection();
 		request.setRequestProperty("User-Agent", "Semantics3 Java Library");
 		consumer.sign(request);
@@ -107,13 +108,13 @@ public class Semantics3Request{
             OAuthMessageSignerException,
             OAuthExpectationFailedException,
             OAuthCommunicationException,
-            IOException {
+            IOException, URISyntaxException {
         String req = new StringBuffer()
                 .append(API_BASE)
                 .append(endpoint)
                 .toString();
         URL url = new URL(req);
-
+        url = url.toURI().normalize().toURL();
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         request.setRequestProperty("User-Agent", "Semantics3 Java Library");
         if(method == "POST") {
@@ -197,18 +198,18 @@ public class Semantics3Request{
 	}
 	
 	protected void runQuery() throws
-		OAuthMessageSignerException,
-		OAuthExpectationFailedException,
-		OAuthCommunicationException,
-		IOException {
+            OAuthMessageSignerException,
+            OAuthExpectationFailedException,
+            OAuthCommunicationException,
+            IOException, URISyntaxException {
 		runQuery(this.endpoint);
 	}
 	
 	protected void runQuery(String endpoint) throws
-		OAuthMessageSignerException,
-		OAuthExpectationFailedException,
-		OAuthCommunicationException,
-		IOException {
+            OAuthMessageSignerException,
+            OAuthExpectationFailedException,
+            OAuthCommunicationException,
+            IOException, URISyntaxException {
 		JSONObject q = this.query.get(endpoint);
 		if (q==null) {
 			throw new Semantics3Exception(
@@ -231,7 +232,7 @@ public class Semantics3Request{
             OAuthMessageSignerException,
             OAuthExpectationFailedException,
             OAuthCommunicationException,
-            IOException {
+            IOException, URISyntaxException {
         if(method == "GET"){
             JSONObject jsonObject = new JSONObject(params);
             this.query.put(endpoint, jsonObject);
@@ -251,15 +252,15 @@ public class Semantics3Request{
         return this.queryResult;
     }
 
-	public JSONObject get() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
+	public JSONObject get() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException, URISyntaxException {
 		return get(this.endpoint);
 	}
 	
-	public JSONObject get(String endpoint) throws 
-		OAuthMessageSignerException,
-		OAuthExpectationFailedException,
-		OAuthCommunicationException,
-		IOException {
+	public JSONObject get(String endpoint) throws
+            OAuthMessageSignerException,
+            OAuthExpectationFailedException,
+            OAuthCommunicationException,
+            IOException, URISyntaxException {
 		this.runQuery(endpoint);
 		return this.queryResult;
 	}

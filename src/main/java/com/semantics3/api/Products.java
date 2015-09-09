@@ -1,14 +1,13 @@
 package com.semantics3.api;
 
-import java.io.IOException;
-
+import com.semantics3.Util;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
-
 import org.json.JSONObject;
 
-import com.semantics3.Util;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Products extends Semantics3Request {
 
@@ -17,13 +16,13 @@ public class Products extends Semantics3Request {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public JSONObject getProducts() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
+	public JSONObject getProducts() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException, URISyntaxException {
 		return this.get();
 	}
-	public JSONObject getOffers() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
+	public JSONObject getOffers() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException, URISyntaxException {
 		return this.get("offers");
 	}
-	public JSONObject getCategories() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
+	public JSONObject getCategories() throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException, URISyntaxException {
 		return this.get("categories");
 	}
 	

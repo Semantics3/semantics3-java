@@ -9,6 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ProductsTest {
     @Test
-    public void TestProductsQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestProductsQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products.productsField("search", "iphone");
@@ -30,7 +31,7 @@ public class ProductsTest {
     }
 
     @Test
-    public void TestUPCQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestUPCQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products.productsField("upc", "883974958450");
@@ -41,7 +42,7 @@ public class ProductsTest {
     }
 
     @Test
-    public void TestURLQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestURLQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products.productsField("url", "http://www.walmart.com/ip/15833173");
@@ -51,7 +52,7 @@ public class ProductsTest {
     }
 
     @Test
-    public void TestPriceFilterQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestPriceFilterQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products
@@ -63,7 +64,7 @@ public class ProductsTest {
     }
 
     @Test
-    public void TestCategoryIDQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestCategoryIDQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products
@@ -74,7 +75,7 @@ public class ProductsTest {
     }
 
     @Test
-    public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+    public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -85,7 +86,7 @@ public class ProductsTest {
     }
 
     @Ignore
-    public void TestPagination() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+    public void TestPagination() throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
