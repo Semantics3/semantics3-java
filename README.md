@@ -11,7 +11,7 @@ See https://www.semantics3.com for more information.
     <dependency>
         <groupId>com.semantics3</groupId>
         <artifactId>Sem3Java</artifactId>
-        <version>1.2.2</version>
+        <version>1.2.3</version>
     </dependency>
 ```
 
