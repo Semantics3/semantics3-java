@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
 
-import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,7 +41,7 @@ public class Semantics3RequestTest {
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
         JSONObject result = sem3.runQuery("webhooks", "GET", params);
-        assertTrue(result.getJSONArray("data").length() > 0);
+        assertThat(result.getString("code"), equalTo("OK"));
 
     }
 
@@ -61,4 +60,5 @@ public class Semantics3RequestTest {
             assertThat(response.getString("code"), equalTo("OK"));
         }
     }
+
 }
