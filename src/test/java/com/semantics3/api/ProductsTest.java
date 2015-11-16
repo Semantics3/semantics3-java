@@ -68,13 +68,7 @@ public class ProductsTest {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products
-                .categoriesField("cat_id", 4992);
-        JSONObject results = products.getCategories();
-        JSONArray resultsArray = (JSONArray) results.get("results");
-        assertThat(resultsArray.length() > 0, is(true));
-    }
-
-    @Test
+                .categoriesField("cat_id", 4992); JSONObject results = products.getCategories(); JSONArray resultsArray = (JSONArray) results.get("results"); assertThat(resultsArray.length() > 0, is(true)); }  @Test
     public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
