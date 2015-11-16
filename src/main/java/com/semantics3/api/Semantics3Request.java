@@ -99,7 +99,13 @@ public class Semantics3Request{
         catch (IOException e) {
             InputStream error = ((HttpURLConnection) request).getErrorStream();
             JSONObject json = new JSONObject(new JSONTokener(error));
-            json.put("code", "Error");
+            if (!json.has("code")) {
+                json.put("code", "Error");
+            }
+            else {
+                Object value = json.get("code");
+                json.put("code", value.toString());
+            }
             return json;
         }
 	}
@@ -145,7 +151,13 @@ public class Semantics3Request{
         catch (IOException e) {
             InputStream error = ((HttpURLConnection) request).getErrorStream();
             JSONObject json = new JSONObject(new JSONTokener(error));
-            json.put("code", "Error");
+            if (!json.has("code")) {
+                json.put("code", "Error");
+            }
+            else {
+                Object value = json.get("code");
+                json.put("code", value.toString());
+            }
             return json;
         }
     }
@@ -219,10 +231,10 @@ public class Semantics3Request{
 				
 		}
 		this.queryResult = fetch(endpoint,q.toString());
-		if (!this.queryResult.getString("code").equals("OK")) {
-			throw new Semantics3Exception(
+        if (!this.queryResult.getString("code").equals("OK")) {
+            throw new Semantics3Exception(
 					this.queryResult.getString("code"),
-					this.queryResult.getString("message")
+                    String.format("Error Code: %s %s", this.queryResult.getString("code"),this.queryResult.getString("message"))
 				);
 			
 		}

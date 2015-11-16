@@ -1,5 +1,6 @@
 package com.semantics3.api;
 
+import com.semantics3.errors.Semantics3Exception;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
@@ -77,6 +78,14 @@ public class ProductsTest {
         JSONObject jsonObject = semantics3Request.runQuery("skus", "GET", params);
         JSONArray resultsArray = (JSONArray) jsonObject.get("results");
         assertThat(resultsArray.length() > 0, is(true));
+    }
+
+    @Test(expected = Semantics3Exception.class)
+    public void TestSiteQuery() throws IOException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, URISyntaxException {
+        Properties property = TestUtils.getConfig("api.config");
+        Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
+        products .productsField("url", "zsdfseobn.com/sdgeafg");
+        JSONObject results = products.getProducts();
     }
 
     @Ignore
