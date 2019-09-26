@@ -4,7 +4,7 @@
 
     <groupId>com.semantics3</groupId>
     <artifactId>Sem3Java</artifactId>
-    <version>1.2.4-android</version>
+    <version>1.2.4-android-SNAPSHOT</version>
     <name>Semantics3 Java Library</name>
     <url>https://github.com/Semantics3/semantics3-java</url>
     <description>Java bindings for Semantics3 API</description>
