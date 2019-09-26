@@ -36,7 +36,6 @@ public class ProductsTest {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products.productsField("upc", "883974958450");
-        products.productsField("fields", "name", "gtins");
         JSONObject results = products.getProducts();
         JSONArray resultsArray = (JSONArray) results.get("results");
         assertThat(resultsArray.length() > 0, is(true));
@@ -69,11 +68,16 @@ public class ProductsTest {
         Properties property = TestUtils.getConfig("api.config");
         Products products = new Products(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         products
-                .categoriesField("cat_id", 4992); JSONObject results = products.getCategories(); JSONArray resultsArray = (JSONArray) results.get("results"); assertThat(resultsArray.length() > 0, is(true)); }  @Test
+                .categoriesField("cat_id", 4992);
+        JSONObject results = products.getCategories();
+        JSONArray resultsArray = (JSONArray) results.get("results");
+        assertThat(resultsArray.length() > 0, is(true)); }
+    @Test
     public void TestSKUQuery() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException, URISyntaxException {
         Properties property = TestUtils.getConfig("api.config");
         Semantics3Request semantics3Request = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("site", "abercrombie.com");
         params.put("site", "abercrombie.com");
         JSONObject jsonObject = semantics3Request.runQuery("skus", "GET", params);
         JSONArray resultsArray = (JSONArray) jsonObject.get("results");

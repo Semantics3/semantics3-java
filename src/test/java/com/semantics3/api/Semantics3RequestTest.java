@@ -52,6 +52,7 @@ public class Semantics3RequestTest {
         Semantics3Request sem3 = new Semantics3Request(property.get("API_KEY").toString(), property.get("API_SECRET").toString());
         HashMap<String, Object> params = new HashMap<String, Object>();
         JSONObject result = sem3.runQuery("webhooks", "GET", params);
+        System.out.println(result);
         JSONArray data = result.getJSONArray("data");
         if (data.length() > 0) {
             JSONObject webhooks = (JSONObject) data.get(0);
